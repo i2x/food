@@ -1,4 +1,5 @@
 <title>ตารางกินคัต 7-Eleven</title>
+<meta name="theme-color" content="#0F5348">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -51,219 +52,154 @@
 
 *{box-sizing:border-box}
 body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
+  margin:0;background:var(--paper);color:var(--ink);
   font-family:"IBM Plex Sans Thai","Helvetica Neue",Arial,sans-serif;
-  font-size:16px;
-  line-height:1.6;
-  -webkit-text-size-adjust:100%;
+  font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;
 }
 .wrap{max-width:660px;margin:0 auto;padding:28px 18px 72px}
 
-/* ---------- masthead ---------- */
 .mast{border-bottom:3px solid var(--rule-hard);padding-bottom:14px}
-.eyebrow{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-3);margin:0 0 8px;
-}
-h1{
-  font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;
-  font-weight:700;font-size:clamp(28px,7vw,40px);
-  line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance;
-}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 8px}
+h1{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:700;
+  font-size:clamp(28px,7vw,40px);line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance}
 .sub{color:var(--ink-2);font-size:14.5px;margin:10px 0 0;max-width:46ch}
 
-/* ---------- toggle ---------- */
-.switch{
-  position:sticky;top:0;z-index:20;
-  background:var(--paper);
-  padding:14px 0 12px;
-  margin-top:22px;
-  border-bottom:1px solid var(--rule);
-}
+/* ---- sticky control bar ---- */
+.switch{position:sticky;top:0;z-index:20;background:var(--paper);
+  padding:14px 0 12px;margin-top:22px;border-bottom:1px solid var(--rule)}
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.seg button{
-  font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;
-  font-weight:600;font-size:15px;
-  padding:11px 8px;border-radius:9px;cursor:pointer;
-  background:var(--card);color:var(--ink-2);
-  border:1.5px solid var(--rule);
-  transition:background .15s,color .15s,border-color .15s;
-  line-height:1.3;
-}
-.seg button .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;opacity:.72;margin-bottom:2px}
-.seg button[aria-pressed="true"]{
-  background:var(--accent);color:var(--paper);border-color:var(--accent);
-}
+.seg button{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:600;font-size:15px;
+  padding:11px 8px;border-radius:9px;cursor:pointer;background:var(--card);color:var(--ink-2);
+  border:1.5px solid var(--rule);transition:background .15s,color .15s,border-color .15s;line-height:1.3}
+.seg button .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;opacity:.72;margin-bottom:2px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--paper);border-color:var(--accent)}
 .seg button:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
 
-/* ---------- stat strip ---------- */
-.stats{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border:1px solid var(--rule);border-radius:11px;
-  background:var(--card);box-shadow:var(--shadow);
-  margin:18px 0 0;overflow:hidden;
-}
+/* ---- live remaining ---- */
+.live{margin-top:10px;background:var(--card);border:1px solid var(--rule);
+  border-radius:10px;padding:10px 12px;box-shadow:var(--shadow)}
+.livetop{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.liveleft{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:600;font-size:14px;line-height:1.3}
+.liveright{font-family:"IBM Plex Mono",monospace;font-size:12px;
+  font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.bar{height:5px;border-radius:3px;background:var(--rule);margin-top:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;
+  transition:width .3s ease;border-radius:3px}
+.live.done .liveleft{color:var(--accent)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);
+  border-radius:11px;background:var(--card);box-shadow:var(--shadow);margin:18px 0 0;overflow:hidden}
 .stat{padding:12px 8px;text-align:center;border-right:1px solid var(--rule)}
 .stat:last-child{border-right:0}
-.stat b{
-  display:block;font-family:"IBM Plex Mono",monospace;
-  font-variant-numeric:tabular-nums;font-weight:600;
-  font-size:clamp(17px,4.6vw,21px);color:var(--ink);letter-spacing:-.02em;
-}
-.stat span{
-  display:block;font-family:"IBM Plex Mono",monospace;
-  font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--ink-3);margin-top:3px;
-}
+.stat b{display:block;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:600;font-size:clamp(17px,4.6vw,21px);color:var(--ink);letter-spacing:-.02em}
+.stat span{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
 
-/* ---------- section ---------- */
 section{margin-top:38px}
-h2{
-  font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;
-  font-weight:700;font-size:19px;margin:0 0 3px;letter-spacing:-.005em;
-}
+h2{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:700;
+  font-size:19px;margin:0 0 3px;letter-spacing:-.005em}
 .note{color:var(--ink-2);font-size:13.5px;margin:0 0 16px}
+.h2row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 
-/* ---------- timeline ---------- */
+/* ---- timeline ---- */
 .tl{list-style:none;margin:0;padding:0;position:relative}
-.tl::before{
-  content:"";position:absolute;left:53px;top:14px;bottom:14px;
-  width:1.5px;background:var(--rule);
-}
+.tl::before{content:"";position:absolute;left:53px;top:14px;bottom:14px;width:1.5px;background:var(--rule)}
 .tl li{position:relative;display:grid;grid-template-columns:53px 1fr;gap:14px;padding:0 0 14px}
-.time{
-  font-family:"IBM Plex Mono",monospace;font-weight:500;
-  font-size:12.5px;font-variant-numeric:tabular-nums;
-  color:var(--ink-2);padding-top:13px;text-align:right;padding-right:2px;
-  letter-spacing:-.02em;
-}
-.dot{
-  position:absolute;left:49px;top:17px;width:9px;height:9px;
-  border-radius:50%;background:var(--accent);
-  border:2.5px solid var(--paper);z-index:2;
-}
-.card{
-  background:var(--card);border:1px solid var(--rule);
-  border-radius:11px;padding:12px 14px;box-shadow:var(--shadow);
-}
-.card .what{font-size:15px;font-weight:500;line-height:1.5}
-.macros{
-  display:flex;gap:12px;margin-top:7px;
-  font-family:"IBM Plex Mono",monospace;font-size:11.5px;
-  font-variant-numeric:tabular-nums;color:var(--ink-3);
-  border-top:1px solid var(--rule);padding-top:7px;
-}
+.time{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:12.5px;
+  font-variant-numeric:tabular-nums;color:var(--ink-2);padding-top:13px;
+  text-align:right;padding-right:2px;letter-spacing:-.02em}
+.dot{position:absolute;left:49px;top:17px;width:9px;height:9px;border-radius:50%;
+  background:var(--accent);border:2.5px solid var(--paper);z-index:2;transition:background .2s}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:11px;
+  padding:12px 13px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:22px 1fr;gap:11px;align-items:start;
+  cursor:pointer;transition:opacity .2s,border-color .2s}
+.tick{appearance:none;-webkit-appearance:none;margin:1px 0 0;width:21px;height:21px;
+  border:1.5px solid var(--ink-3);border-radius:6px;background:transparent;
+  cursor:pointer;position:relative;transition:background .15s,border-color .15s}
+.tick:checked{background:var(--accent);border-color:var(--accent)}
+.tick:checked::after{content:"";position:absolute;left:6.5px;top:2.5px;width:5px;height:10px;
+  border:solid var(--card);border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+.tick:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
+.what{font-size:15px;font-weight:500;line-height:1.5;display:block}
+.macros{display:flex;gap:12px;margin-top:7px;font-family:"IBM Plex Mono",monospace;
+  font-size:11.5px;font-variant-numeric:tabular-nums;color:var(--ink-3);
+  border-top:1px solid var(--rule);padding-top:7px}
 .macros em{font-style:normal;color:var(--ink-2);font-weight:500}
 
-/* activity rows */
-.tl li.act .card{
-  background:transparent;box-shadow:none;
-  border:1px dashed var(--rule);
-}
-.tl li.act .what{
-  font-family:"IBM Plex Mono",monospace;font-size:12px;
-  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:400;
-}
-.tl li.act .dot{background:var(--paper);border:2px solid var(--rule-hard)}
-a.card{display:block;text-decoration:none;color:inherit}
-a.card.applink{border-style:solid;border-color:var(--accent);background:var(--accent-soft)}
-a.card.applink .what{color:var(--accent);font-weight:500}
-a.card.applink .go{letter-spacing:.06em;opacity:.85}
-a.card.applink:hover{border-color:var(--accent);filter:brightness(.97)}
-a.card.applink:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
+/* eaten state */
+.tl li.eaten .card{opacity:.5}
+.tl li.eaten .what{text-decoration:line-through;text-decoration-thickness:1px}
+.tl li.eaten .dot{background:var(--rule-hard)}
 
-/* diff highlight */
+/* activity rows */
+.tl li.act .card{background:transparent;box-shadow:none;border:1px dashed var(--rule)}
+.tl li.act .what{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.tl li.act .dot{background:var(--paper);border:2px solid var(--rule-hard)}
+.tl li.act.eaten .dot{background:var(--rule-hard)}
+.applink{display:inline-block;margin-top:6px;font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.08em;color:var(--accent);text-decoration:none;
+  border-bottom:1px solid var(--accent);padding-bottom:1px}
+.applink:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+
 .tl li.diff .card{border-color:var(--mark);background:var(--mark-soft)}
 .tl li.diff .dot{background:var(--mark)}
-.flag{
-  display:inline-block;font-family:"IBM Plex Mono",monospace;
-  font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--mark);border:1px solid var(--mark);
-  border-radius:4px;padding:1px 5px;margin-left:7px;vertical-align:1px;
-}
+.tl li.diff.eaten .dot{background:var(--rule-hard)}
+.flag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--mark);border:1px solid var(--mark);
+  border-radius:4px;padding:1px 5px;margin-left:7px;vertical-align:1px}
 
-/* ---------- shopping ---------- */
-.buy{list-style:none;margin:0;padding:0;background:var(--card);
-  border:1px solid var(--rule);border-radius:11px;box-shadow:var(--shadow);overflow:hidden}
+/* ---- shopping ---- */
+.buy{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--rule);
+  border-radius:11px;box-shadow:var(--shadow);overflow:hidden}
 .buy li{border-bottom:1px solid var(--rule)}
 .buy li:last-child{border-bottom:0}
-.buy label{
-  display:grid;grid-template-columns:22px 1fr auto;gap:11px;align-items:center;
-  padding:12px 14px;cursor:pointer;
-}
-.buy input{
-  appearance:none;-webkit-appearance:none;margin:0;
-  width:20px;height:20px;border:1.5px solid var(--ink-3);
-  border-radius:5px;background:transparent;cursor:pointer;position:relative;
-}
-.buy input:checked{background:var(--accent);border-color:var(--accent)}
-.buy input:checked::after{
-  content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
-  border:solid var(--card);border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
-}
-.buy input:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
+.buy label{display:grid;grid-template-columns:22px 1fr auto;gap:11px;align-items:center;
+  padding:12px 13px;cursor:pointer}
 .item{font-size:14.5px;line-height:1.4}
 .item small{display:block;color:var(--ink-3);font-size:12px;margin-top:1px}
-.baht{
-  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:13px;color:var(--ink-2);font-weight:500;
-}
-.buy input:checked ~ .item{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
-.total{
-  display:flex;justify-content:space-between;align-items:baseline;
-  padding:13px 14px;background:var(--accent-soft);
-  font-family:Anuphan,sans-serif;font-weight:600;font-size:15px;
-}
-.total b{font-family:"IBM Plex Mono",monospace;font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.reset{
-  display:block;margin:10px 0 0;background:none;border:0;cursor:pointer;
-  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-3);padding:4px 0;
-}
+.baht{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  font-size:13px;color:var(--ink-2);font-weight:500}
+.buy .tick:checked ~ .item{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding:13px 14px;
+  background:var(--accent-soft);font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:600;font-size:15px}
+.total b{font-family:"IBM Plex Mono",monospace;font-size:19px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+.reset{background:none;border:0;cursor:pointer;font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  padding:4px 0;white-space:nowrap}
 .reset:hover{color:var(--accent)}
 .reset:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 
-/* ---------- trap / rule lists ---------- */
 .traps{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.traps li{
-  background:var(--card);border:1px solid var(--rule);
-  border-left:3px solid var(--mark);border-radius:9px;
-  padding:11px 13px;font-size:14px;line-height:1.5;
-}
+.traps li{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--mark);
+  border-radius:9px;padding:11px 13px;font-size:14px;line-height:1.5}
 .traps b{font-weight:600}
-.rules{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.rules li{
-  display:grid;grid-template-columns:26px 1fr;gap:9px;
-  padding:11px 0;border-bottom:1px solid var(--rule);
-  font-size:14px;line-height:1.5;
-}
+.rules{list-style:none;margin:0;padding:0}
+.rules li{display:grid;grid-template-columns:26px 1fr;gap:9px;padding:11px 0;
+  border-bottom:1px solid var(--rule);font-size:14px;line-height:1.5}
 .rules li:last-child{border-bottom:0}
-.rules .n{
-  font-family:"IBM Plex Mono",monospace;font-size:11px;
-  color:var(--accent);font-weight:600;padding-top:3px;
-}
+.rules .n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--accent);
+  font-weight:600;padding-top:3px}
 
-/* ---------- table ---------- */
-.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;
-  border:1px solid var(--rule);border-radius:11px;background:var(--card);box-shadow:var(--shadow)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);
+  border-radius:11px;background:var(--card);box-shadow:var(--shadow)}
 table{border-collapse:collapse;width:100%;min-width:420px;font-size:13.5px}
 th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--rule)}
-th{
-  font-family:"IBM Plex Mono",monospace;font-size:10px;
-  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:500;
-  background:var(--paper);
-}
+th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;background:var(--paper)}
 tr:last-child td{border-bottom:0}
 td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 
-footer{
-  margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
-  font-family:"IBM Plex Mono",monospace;font-size:11px;
-  letter-spacing:.06em;color:var(--ink-3);line-height:1.9;
-}
+footer{margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
+  color:var(--ink-3);line-height:1.9}
 .hidden{display:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -281,9 +217,16 @@ footer{
       <button type="button" data-plan="a" aria-pressed="true"><span class="k">แบบ A</span>วันมีกล้วย</button>
       <button type="button" data-plan="b" aria-pressed="false"><span class="k">แบบ B</span>วันไม่มีกล้วย</button>
     </div>
+    <div class="live" id="live">
+      <div class="livetop">
+        <span class="liveleft" id="liveTxt">ยังไม่ได้กินอะไรวันนี้</span>
+        <span class="liveright" id="liveNum"></span>
+      </div>
+      <div class="bar"><i id="liveBar"></i></div>
+    </div>
   </div>
 
-  <!-- ============ PLAN A ============ -->
+  <!-- ================= PLAN A ================= -->
   <div data-pane="a">
     <div class="stats">
       <div class="stat"><b>167</b><span>โปรตีน ก.</span></div>
@@ -293,53 +236,67 @@ footer{
     </div>
 
     <section>
-      <h2>ตารางเวลา</h2>
-      <p class="note">กินให้ตรงเวลาเท่าที่ทำได้ — มื้อ 06:00 กับ 21:00 สำคัญที่สุด</p>
+      <div class="h2row">
+        <h2>ตารางเวลา</h2>
+        <button class="reset" type="button" data-clear="meal">ล้างวันนี้</button>
+      </div>
+      <p class="note">ติ๊กทุกครั้งที่กินเสร็จ — รีเซ็ตเองอัตโนมัติเมื่อขึ้นวันใหม่</p>
       <ul class="tl">
-        <li class="diff"><span class="dot"></span><span class="time">04:15</span>
-          <div class="card"><div class="what">กล้วยหอม 1 ลูก<span class="flag">ก่อนเทรน</span></div>
-            <div class="macros"><span>โปรตีน <em>1 ก.</em></span><span>พลังงาน <em>100</em></span></div></div></li>
-        <li class="act"><span class="dot"></span><span class="time">05:00</span>
-          <a class="card applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener"><span class="what">เวท Day 1 / 2 / 3 <span class="go">เปิดแอป →</span></span></a></li>
-        <li><span class="dot"></span><span class="time">06:00</span>
-          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></div>
-            <div class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></div></div></li>
-        <li><span class="dot"></span><span class="time">09:00</span>
-          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น</div>
-            <div class="macros"><span>โปรตีน <em>22 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
-        <li><span class="dot"></span><span class="time">12:30</span>
-          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น + ดีน่า 1 กล่อง</div>
-            <div class="macros"><span>โปรตีน <em>37 ก.</em></span><span>พลังงาน <em>560</em></span></div></div></li>
-        <li class="diff"><span class="dot"></span><span class="time">16:00</span>
-          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + กล้วยหอม 1 ลูก</div>
-            <div class="macros"><span>โปรตีน <em>13 ก.</em></span><span>พลังงาน <em>250</em></span></div></div></li>
-        <li class="act"><span class="dot"></span><span class="time">18:00</span>
-          <div class="card"><div class="what">เดิน 6 กม.</div></div></li>
-        <li><span class="dot"></span><span class="time">19:30</span>
-          <div class="card"><div class="what">ข้าวกล่อง EZYGO ข้าวหอมมันปูอกไก่ย่างจิ้มแจ่ว</div>
-            <div class="macros"><span>โปรตีน <em>25 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
-        <li><span class="dot"></span><span class="time">21:00</span>
-          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงดีน่า 1 กล่อง<span class="flag">ห้ามข้าม</span></div>
-            <div class="macros"><span>โปรตีน <em>42 ก.</em></span><span>พลังงาน <em>275</em></span></div></div></li>
+        <li class="diff" data-m="a-0415" data-p="1" data-k="100"><span class="dot"></span><span class="time">04:15</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">กล้วยหอม 1 ลูก<span class="flag">ก่อนเทรน</span></span>
+            <span class="macros"><span>โปรตีน <em>1 ก.</em></span><span>พลังงาน <em>100</em></span></span></span></label></li>
+
+        <li class="act" data-m="a-0500"><span class="dot"></span><span class="time">05:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวท Day 1 / 2 / 3</span>
+            <a class="applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener">เปิดแอปจดเวท →</a></span></label></li>
+
+        <li data-m="a-0600" data-p="27" data-k="125"><span class="dot"></span><span class="time">06:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></span>
+            <span class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></span></span></label></li>
+
+        <li data-m="a-0900" data-p="22" data-k="410"><span class="dot"></span><span class="time">09:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น</span>
+            <span class="macros"><span>โปรตีน <em>22 ก.</em></span><span>พลังงาน <em>410</em></span></span></span></label></li>
+
+        <li data-m="a-1230" data-p="37" data-k="560"><span class="dot"></span><span class="time">12:30</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น + ดีน่า 1 กล่อง</span>
+            <span class="macros"><span>โปรตีน <em>37 ก.</em></span><span>พลังงาน <em>560</em></span></span></span></label></li>
+
+        <li class="diff" data-m="a-1600" data-p="13" data-k="250"><span class="dot"></span><span class="time">16:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + กล้วยหอม 1 ลูก</span>
+            <span class="macros"><span>โปรตีน <em>13 ก.</em></span><span>พลังงาน <em>250</em></span></span></span></label></li>
+
+        <li class="act" data-m="a-1800"><span class="dot"></span><span class="time">18:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เดิน 6 กม.</span></span></label></li>
+
+        <li data-m="a-1930" data-p="25" data-k="410"><span class="dot"></span><span class="time">19:30</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ข้าวกล่อง EZYGO ข้าวหอมมันปูอกไก่ย่างจิ้มแจ่ว</span>
+            <span class="macros"><span>โปรตีน <em>25 ก.</em></span><span>พลังงาน <em>410</em></span></span></span></label></li>
+
+        <li data-m="a-2100" data-p="42" data-k="275"><span class="dot"></span><span class="time">21:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวย์ 1 สกู๊ป ชงดีน่า 1 กล่อง<span class="flag">ห้ามข้าม</span></span>
+            <span class="macros"><span>โปรตีน <em>42 ก.</em></span><span>พลังงาน <em>275</em></span></span></span></label></li>
       </ul>
     </section>
 
     <section>
-      <h2>ของที่ต้องสั่ง</h2>
+      <div class="h2row">
+        <h2>ของที่ต้องสั่ง</h2>
+        <button class="reset" type="button" data-reset="a">ล้างลิสต์</button>
+      </div>
       <p class="note">ขนมปังใช้จากแพ็คที่ตุนไว้ ไม่ต้องซื้อทุกวัน</p>
       <ul class="buy">
-        <li><label><input type="checkbox" data-k="a1"><span class="item">ไข่ต้ม แพ็ก 2 ฟอง<small>3 แพ็ก</small></span><span class="baht">54฿</span></label></li>
-        <li><label><input type="checkbox" data-k="a2"><span class="item">ข้าวกล่อง EZYGO อกไก่ย่างจิ้มแจ่ว<small>1 กล่อง</small></span><span class="baht">59฿</span></label></li>
-        <li><label><input type="checkbox" data-k="a3"><span class="item">ดีน่า ไฮโปรตีน 15 กรัม 230 ml<small>2 กล่อง</small></span><span class="baht">30฿</span></label></li>
-        <li><label><input type="checkbox" data-k="a4"><span class="item">กล้วยหอม<small>2 ลูก</small></span><span class="baht">24฿</span></label></li>
-        <li><label><input type="checkbox" data-k="a5"><span class="item">เลอแปง ขนมปังโฮลวีท 250 ก.<small>จากสต็อก 8 แผ่น — ซื้อใหม่ทุก 1–2 วัน</small></span><span class="baht">18฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="a1"><span class="item">ไข่ต้ม แพ็ก 2 ฟอง<small>3 แพ็ก</small></span><span class="baht">54฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="a2"><span class="item">ข้าวกล่อง EZYGO อกไก่ย่างจิ้มแจ่ว<small>1 กล่อง</small></span><span class="baht">59฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="a3"><span class="item">ดีน่า ไฮโปรตีน 15 กรัม 230 ml<small>2 กล่อง</small></span><span class="baht">30฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="a4"><span class="item">กล้วยหอม<small>2 ลูก</small></span><span class="baht">24฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="a5"><span class="item">เลอแปง ขนมปังโฮลวีท 250 ก.<small>จากสต็อก 8 แผ่น — ซื้อใหม่ทุก 1–2 วัน</small></span><span class="baht">18฿</span></label></li>
       </ul>
       <div class="total"><span>รวม</span><b>185฿</b></div>
-      <button class="reset" type="button" data-reset="a">ล้างเครื่องหมายถูก</button>
     </section>
   </div>
 
-  <!-- ============ PLAN B ============ -->
+  <!-- ================= PLAN B ================= -->
   <div data-pane="b" class="hidden">
     <div class="stats">
       <div class="stat"><b>173</b><span>โปรตีน ก.</span></div>
@@ -349,53 +306,67 @@ footer{
     </div>
 
     <section>
-      <h2>ตารางเวลา</h2>
+      <div class="h2row">
+        <h2>ตารางเวลา</h2>
+        <button class="reset" type="button" data-clear="meal">ล้างวันนี้</button>
+      </div>
       <p class="note">ต่างจากแบบ A แค่ 2 ช่อง — 04:15 กับ 16:00</p>
       <ul class="tl">
-        <li class="diff"><span class="dot"></span><span class="time">04:15</span>
-          <div class="card"><div class="what">เมจิกฟาร์ม น้ำมะพร้าว 1 ขวด + ขนมปัง 1 แผ่น<span class="flag">ก่อนเทรน</span></div>
-            <div class="macros"><span>โปรตีน <em>3 ก.</em></span><span>พลังงาน <em>115</em></span></div></div></li>
-        <li class="act"><span class="dot"></span><span class="time">05:00</span>
-          <a class="card applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener"><span class="what">เวท Day 1 / 2 / 3 <span class="go">เปิดแอป →</span></span></a></li>
-        <li><span class="dot"></span><span class="time">06:00</span>
-          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></div>
-            <div class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></div></div></li>
-        <li><span class="dot"></span><span class="time">09:00</span>
-          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น</div>
-            <div class="macros"><span>โปรตีน <em>22 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
-        <li><span class="dot"></span><span class="time">12:30</span>
-          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น + ดีน่า 1 กล่อง</div>
-            <div class="macros"><span>โปรตีน <em>37 ก.</em></span><span>พลังงาน <em>560</em></span></div></div></li>
-        <li class="diff"><span class="dot"></span><span class="time">16:00</span>
-          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 2 แผ่น</div>
-            <div class="macros"><span>โปรตีน <em>17 ก.</em></span><span>พลังงาน <em>280</em></span></div></div></li>
-        <li class="act"><span class="dot"></span><span class="time">18:00</span>
-          <div class="card"><div class="what">เดิน 6 กม.</div></div></li>
-        <li><span class="dot"></span><span class="time">19:30</span>
-          <div class="card"><div class="what">ข้าวกล่อง EZYGO ข้าวหอมมันปูอกไก่ย่างจิ้มแจ่ว</div>
-            <div class="macros"><span>โปรตีน <em>25 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
-        <li><span class="dot"></span><span class="time">21:00</span>
-          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงดีน่า 1 กล่อง<span class="flag">ห้ามข้าม</span></div>
-            <div class="macros"><span>โปรตีน <em>42 ก.</em></span><span>พลังงาน <em>275</em></span></div></div></li>
+        <li class="diff" data-m="b-0415" data-p="3" data-k="115"><span class="dot"></span><span class="time">04:15</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เมจิกฟาร์ม น้ำมะพร้าว 1 ขวด + ขนมปัง 1 แผ่น<span class="flag">ก่อนเทรน</span></span>
+            <span class="macros"><span>โปรตีน <em>3 ก.</em></span><span>พลังงาน <em>115</em></span></span></span></label></li>
+
+        <li class="act" data-m="b-0500"><span class="dot"></span><span class="time">05:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวท Day 1 / 2 / 3</span>
+            <a class="applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener">เปิดแอปจดเวท →</a></span></label></li>
+
+        <li data-m="b-0600" data-p="27" data-k="125"><span class="dot"></span><span class="time">06:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></span>
+            <span class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></span></span></label></li>
+
+        <li data-m="b-0900" data-p="22" data-k="410"><span class="dot"></span><span class="time">09:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น</span>
+            <span class="macros"><span>โปรตีน <em>22 ก.</em></span><span>พลังงาน <em>410</em></span></span></span></label></li>
+
+        <li data-m="b-1230" data-p="37" data-k="560"><span class="dot"></span><span class="time">12:30</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น + ดีน่า 1 กล่อง</span>
+            <span class="macros"><span>โปรตีน <em>37 ก.</em></span><span>พลังงาน <em>560</em></span></span></span></label></li>
+
+        <li class="diff" data-m="b-1600" data-p="17" data-k="280"><span class="dot"></span><span class="time">16:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 2 แผ่น</span>
+            <span class="macros"><span>โปรตีน <em>17 ก.</em></span><span>พลังงาน <em>280</em></span></span></span></label></li>
+
+        <li class="act" data-m="b-1800"><span class="dot"></span><span class="time">18:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เดิน 6 กม.</span></span></label></li>
+
+        <li data-m="b-1930" data-p="25" data-k="410"><span class="dot"></span><span class="time">19:30</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ข้าวกล่อง EZYGO ข้าวหอมมันปูอกไก่ย่างจิ้มแจ่ว</span>
+            <span class="macros"><span>โปรตีน <em>25 ก.</em></span><span>พลังงาน <em>410</em></span></span></span></label></li>
+
+        <li data-m="b-2100" data-p="42" data-k="275"><span class="dot"></span><span class="time">21:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวย์ 1 สกู๊ป ชงดีน่า 1 กล่อง<span class="flag">ห้ามข้าม</span></span>
+            <span class="macros"><span>โปรตีน <em>42 ก.</em></span><span>พลังงาน <em>275</em></span></span></span></label></li>
       </ul>
     </section>
 
     <section>
-      <h2>ของที่ต้องสั่ง</h2>
+      <div class="h2row">
+        <h2>ของที่ต้องสั่ง</h2>
+        <button class="reset" type="button" data-reset="b">ล้างลิสต์</button>
+      </div>
       <p class="note">แบบนี้กินขนมปัง 11 แผ่น เกิน 1 แพ็ค — ต้องมีสำรอง</p>
       <ul class="buy">
-        <li><label><input type="checkbox" data-k="b1"><span class="item">ไข่ต้ม แพ็ก 2 ฟอง<small>3 แพ็ก</small></span><span class="baht">54฿</span></label></li>
-        <li><label><input type="checkbox" data-k="b2"><span class="item">ข้าวกล่อง EZYGO อกไก่ย่างจิ้มแจ่ว<small>1 กล่อง</small></span><span class="baht">59฿</span></label></li>
-        <li><label><input type="checkbox" data-k="b3"><span class="item">ดีน่า ไฮโปรตีน 15 กรัม 230 ml<small>2 กล่อง</small></span><span class="baht">30฿</span></label></li>
-        <li><label><input type="checkbox" data-k="b4"><span class="item">เมจิกฟาร์ม น้ำมะพร้าว 250 ml<small>1 ขวด</small></span><span class="baht">12฿</span></label></li>
-        <li><label><input type="checkbox" data-k="b5"><span class="item">เลอแปง ขนมปังโฮลวีท 250 ก.<small>จากสต็อก 11 แผ่น — ต้องมี 2 แพ็ค</small></span><span class="baht">25฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="b1"><span class="item">ไข่ต้ม แพ็ก 2 ฟอง<small>3 แพ็ก</small></span><span class="baht">54฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="b2"><span class="item">ข้าวกล่อง EZYGO อกไก่ย่างจิ้มแจ่ว<small>1 กล่อง</small></span><span class="baht">59฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="b3"><span class="item">ดีน่า ไฮโปรตีน 15 กรัม 230 ml<small>2 กล่อง</small></span><span class="baht">30฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="b4"><span class="item">เมจิกฟาร์ม น้ำมะพร้าว 250 ml<small>1 ขวด</small></span><span class="baht">12฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="b5"><span class="item">เลอแปง ขนมปังโฮลวีท 250 ก.<small>จากสต็อก 11 แผ่น — ต้องมี 2 แพ็ค</small></span><span class="baht">25฿</span></label></li>
       </ul>
       <div class="total"><span>รวม</span><b>180฿</b></div>
-      <button class="reset" type="button" data-reset="b">ล้างเครื่องหมายถูก</button>
     </section>
   </div>
 
-  <!-- ============ SHARED ============ -->
+  <!-- ================= SHARED ================= -->
   <section>
     <h2>เช็กก่อนหยิบ</h2>
     <p class="note">สี่จุดที่พลาดบ่อยและทำให้ตัวเลขทั้งวันเพี้ยน</p>
@@ -431,6 +402,7 @@ footer{
       <li><span class="n">03</span><span><b>ชั่งน้ำหนักทุกเช้าเวลาเดิม</b> หลังเข้าห้องน้ำ ก่อนกินอะไร — ดูช่องน้ำหนักอย่างเดียว ช่อง BMR กับกล้ามเนื้อไม่ต้องอ่าน</span></li>
       <li><span class="n">04</span><span><b>กินแบบนี้ 14 วันโดยไม่ปรับอะไร</b> แล้วเอาค่าเฉลี่ย 7 วันไปเทียบกับ 80.71 กก. — เปลี่ยนทีละอย่างเท่านั้น</span></li>
       <li><span class="n">05</span><span><b>วันที่หลุดกินนอกแผน</b> อย่าตัดอะไรชดเชย กินมื้อที่เหลือตามปกติ จดกำกับไว้ว่าหลุด แล้วเดินหน้าต่อ</span></li>
+      <li><span class="n">06</span><span><b>สลับเวลามื้อกันได้</b> ยอดรวมทั้งวันคือตัวที่สำคัญ ไม่ใช่เวลา — ข้อเดียวที่ห้ามขยับคือมื้อ 21:00 ต้องอยู่ก่อนนอน</span></li>
     </ul>
   </section>
 
@@ -442,34 +414,123 @@ footer{
 
 <script>
 (function(){
-  var btns=document.querySelectorAll(".seg button");
-  var panes={a:document.querySelector('[data-pane="a"]'),b:document.querySelector('[data-pane="b"]')};
+  var LS={
+    get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},
+    set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
 
-  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-  function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
-
-  function show(which){
-    btns.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.plan===which?"true":"false")});
-    panes.a.classList.toggle("hidden",which!=="a");
-    panes.b.classList.toggle("hidden",which!=="b");
-    store("mealplan.day",which);
+  function today(){
+    var d=new Date();
+    return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
   }
-  btns.forEach(function(b){b.addEventListener("click",function(){show(b.dataset.plan)})});
-  show(read("mealplan.day")==="b"?"b":"a");
 
-  document.querySelectorAll('.buy input[type="checkbox"]').forEach(function(c){
-    var key="mealplan.buy."+c.dataset.k;
-    if(read(key)==="1") c.checked=true;
-    c.addEventListener("change",function(){store(key,c.checked?"1":"0")});
+  var mealBoxes=Array.prototype.slice.call(document.querySelectorAll(".tl .tick"));
+  var PRE="food.meal.";
+  function keyOf(c){return PRE+c.closest("li").getAttribute("data-m")}
+
+  /* ---- ขึ้นวันใหม่ = ล้างติ๊กมื้อทั้งหมด ---- */
+  function rollover(){
+    if(LS.get("food.day")!==today()){
+      mealBoxes.forEach(function(c){
+        LS.del(keyOf(c)); c.checked=false; c.closest("li").classList.remove("eaten");
+      });
+      LS.set("food.day",today());
+      return true;
+    }
+    return false;
+  }
+
+  function clearMeals(){
+    mealBoxes.forEach(function(c){
+      c.checked=false; LS.del(keyOf(c)); c.closest("li").classList.remove("eaten");
+    });
+    LS.set("food.day",today());
+    paint();
+  }
+
+  /* ---- แถบเหลืออีกเท่าไหร่ ---- */
+  var liveTxt=document.getElementById("liveTxt"),
+      liveNum=document.getElementById("liveNum"),
+      liveBar=document.getElementById("liveBar"),
+      liveBox=document.getElementById("live");
+
+  function paint(){
+    var pane=document.querySelector('[data-pane]:not(.hidden)');
+    if(!pane) return;
+    var rows=pane.querySelectorAll('.tl li[data-p]');
+    var doneP=0,doneK=0,totP=0,totK=0,left=0;
+    Array.prototype.forEach.call(rows,function(li){
+      var p=parseInt(li.getAttribute("data-p"),10),
+          k=parseInt(li.getAttribute("data-k"),10);
+      totP+=p; totK+=k;
+      if(li.querySelector(".tick").checked){doneP+=p;doneK+=k}else{left++}
+    });
+    liveBar.style.width=(totK?Math.round(doneK/totK*100):0)+"%";
+    if(left===0){
+      liveBox.classList.add("done");
+      liveTxt.textContent="กินครบแล้ววันนี้";
+      liveNum.textContent=doneK.toLocaleString()+" kcal · "+doneP+" ก.";
+    }else if(doneK===0){
+      liveBox.classList.remove("done");
+      liveTxt.textContent="ยังไม่ได้กินอะไรวันนี้";
+      liveNum.textContent="เป้า "+totK.toLocaleString()+" kcal · "+totP+" ก.";
+    }else{
+      liveBox.classList.remove("done");
+      liveTxt.textContent="เหลืออีก "+left+" มื้อ";
+      liveNum.textContent="อีก "+(totK-doneK).toLocaleString()+" kcal · "+(totP-doneP)+" ก.";
+    }
+  }
+
+  rollover();
+
+  mealBoxes.forEach(function(c){
+    var li=c.closest("li"), key=keyOf(c);
+    if(LS.get(key)==="1"){c.checked=true;li.classList.add("eaten")}
+    c.addEventListener("change",function(){
+      li.classList.toggle("eaten",c.checked);
+      if(c.checked){LS.set(key,"1")}else{LS.del(key)}
+      paint();
+    });
   });
 
-  document.querySelectorAll("[data-reset]").forEach(function(btn){
-    btn.addEventListener("click",function(){
-      var p=btn.dataset.reset;
-      document.querySelectorAll('[data-pane="'+p+'"] .buy input').forEach(function(c){
-        c.checked=false; store("mealplan.buy."+c.dataset.k,"0");
-      });
+  /* ---- ลิสต์ของ ไม่รีเซ็ตเอง ---- */
+  Array.prototype.forEach.call(document.querySelectorAll(".buy .tick"),function(c){
+    var key="food.buy."+c.getAttribute("data-b");
+    if(LS.get(key)==="1") c.checked=true;
+    c.addEventListener("change",function(){
+      if(c.checked){LS.set(key,"1")}else{LS.del(key)}
     });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-clear]"),function(b){
+    b.addEventListener("click",clearMeals);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-reset]"),function(b){
+    b.addEventListener("click",function(){
+      Array.prototype.forEach.call(
+        document.querySelectorAll('[data-pane="'+b.getAttribute("data-reset")+'"] .buy .tick'),
+        function(c){c.checked=false;LS.del("food.buy."+c.getAttribute("data-b"))}
+      );
+    });
+  });
+
+  /* ---- สลับ A / B ---- */
+  var btns=Array.prototype.slice.call(document.querySelectorAll(".seg button"));
+  var panes={a:document.querySelector('[data-pane="a"]'),b:document.querySelector('[data-pane="b"]')};
+  function show(w){
+    btns.forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-plan")===w?"true":"false")});
+    panes.a.classList.toggle("hidden",w!=="a");
+    panes.b.classList.toggle("hidden",w!=="b");
+    LS.set("food.day.type",w);
+    paint();
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){show(b.getAttribute("data-plan"))})});
+  show(LS.get("food.day.type")==="b"?"b":"a");
+
+  /* ---- เปิดค้างไว้ข้ามคืน แล้วกลับมาที่แท็บ ---- */
+  document.addEventListener("visibilitychange",function(){
+    if(!document.hidden && rollover()) paint();
   });
 })();
 </script>
