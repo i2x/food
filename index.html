@@ -1,0 +1,475 @@
+<title>ตารางกินคัต 7-Eleven</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F4F6F7;
+  --card:#FFFFFF;
+  --ink:#14181D;
+  --ink-2:#4C5560;
+  --ink-3:#7C8794;
+  --rule:#DDE3E7;
+  --rule-hard:#14181D;
+  --accent:#0F5348;
+  --accent-soft:#E4EFEC;
+  --mark:#8A5218;
+  --mark-soft:#F6EDE2;
+  --shadow:0 1px 2px rgba(20,24,29,.06),0 8px 24px -12px rgba(20,24,29,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1114;
+    --card:#171C21;
+    --ink:#EDF1F3;
+    --ink-2:#A3AEB8;
+    --ink-3:#77838E;
+    --rule:#272E35;
+    --rule-hard:#4A555F;
+    --accent:#5FCBB4;
+    --accent-soft:#12302B;
+    --mark:#DCA86A;
+    --mark-soft:#2C2317;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1114;
+  --card:#171C21;
+  --ink:#EDF1F3;
+  --ink-2:#A3AEB8;
+  --ink-3:#77838E;
+  --rule:#272E35;
+  --rule-hard:#4A555F;
+  --accent:#5FCBB4;
+  --accent-soft:#12302B;
+  --mark:#DCA86A;
+  --mark-soft:#2C2317;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans Thai","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:660px;margin:0 auto;padding:28px 18px 72px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:3px solid var(--rule-hard);padding-bottom:14px}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 8px;
+}
+h1{
+  font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;
+  font-weight:700;font-size:clamp(28px,7vw,40px);
+  line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-2);font-size:14.5px;margin:10px 0 0;max-width:46ch}
+
+/* ---------- toggle ---------- */
+.switch{
+  position:sticky;top:0;z-index:20;
+  background:var(--paper);
+  padding:14px 0 12px;
+  margin-top:22px;
+  border-bottom:1px solid var(--rule);
+}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seg button{
+  font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;
+  font-weight:600;font-size:15px;
+  padding:11px 8px;border-radius:9px;cursor:pointer;
+  background:var(--card);color:var(--ink-2);
+  border:1.5px solid var(--rule);
+  transition:background .15s,color .15s,border-color .15s;
+  line-height:1.3;
+}
+.seg button .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;opacity:.72;margin-bottom:2px}
+.seg button[aria-pressed="true"]{
+  background:var(--accent);color:var(--paper);border-color:var(--accent);
+}
+.seg button:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
+
+/* ---------- stat strip ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--rule);border-radius:11px;
+  background:var(--card);box-shadow:var(--shadow);
+  margin:18px 0 0;overflow:hidden;
+}
+.stat{padding:12px 8px;text-align:center;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:0}
+.stat b{
+  display:block;font-family:"IBM Plex Mono",monospace;
+  font-variant-numeric:tabular-nums;font-weight:600;
+  font-size:clamp(17px,4.6vw,21px);color:var(--ink);letter-spacing:-.02em;
+}
+.stat span{
+  display:block;font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:3px;
+}
+
+/* ---------- section ---------- */
+section{margin-top:38px}
+h2{
+  font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;
+  font-weight:700;font-size:19px;margin:0 0 3px;letter-spacing:-.005em;
+}
+.note{color:var(--ink-2);font-size:13.5px;margin:0 0 16px}
+
+/* ---------- timeline ---------- */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{
+  content:"";position:absolute;left:53px;top:14px;bottom:14px;
+  width:1.5px;background:var(--rule);
+}
+.tl li{position:relative;display:grid;grid-template-columns:53px 1fr;gap:14px;padding:0 0 14px}
+.time{
+  font-family:"IBM Plex Mono",monospace;font-weight:500;
+  font-size:12.5px;font-variant-numeric:tabular-nums;
+  color:var(--ink-2);padding-top:13px;text-align:right;padding-right:2px;
+  letter-spacing:-.02em;
+}
+.dot{
+  position:absolute;left:49px;top:17px;width:9px;height:9px;
+  border-radius:50%;background:var(--accent);
+  border:2.5px solid var(--paper);z-index:2;
+}
+.card{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:11px;padding:12px 14px;box-shadow:var(--shadow);
+}
+.card .what{font-size:15px;font-weight:500;line-height:1.5}
+.macros{
+  display:flex;gap:12px;margin-top:7px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  font-variant-numeric:tabular-nums;color:var(--ink-3);
+  border-top:1px solid var(--rule);padding-top:7px;
+}
+.macros em{font-style:normal;color:var(--ink-2);font-weight:500}
+
+/* activity rows */
+.tl li.act .card{
+  background:transparent;box-shadow:none;
+  border:1px dashed var(--rule);
+}
+.tl li.act .what{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:400;
+}
+.tl li.act .dot{background:var(--paper);border:2px solid var(--rule-hard)}
+a.card{display:block;text-decoration:none;color:inherit}
+a.card.applink{border-style:solid;border-color:var(--accent);background:var(--accent-soft)}
+a.card.applink .what{color:var(--accent);font-weight:500}
+a.card.applink .go{letter-spacing:.06em;opacity:.85}
+a.card.applink:hover{border-color:var(--accent);filter:brightness(.97)}
+a.card.applink:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
+
+/* diff highlight */
+.tl li.diff .card{border-color:var(--mark);background:var(--mark-soft)}
+.tl li.diff .dot{background:var(--mark)}
+.flag{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mark);border:1px solid var(--mark);
+  border-radius:4px;padding:1px 5px;margin-left:7px;vertical-align:1px;
+}
+
+/* ---------- shopping ---------- */
+.buy{list-style:none;margin:0;padding:0;background:var(--card);
+  border:1px solid var(--rule);border-radius:11px;box-shadow:var(--shadow);overflow:hidden}
+.buy li{border-bottom:1px solid var(--rule)}
+.buy li:last-child{border-bottom:0}
+.buy label{
+  display:grid;grid-template-columns:22px 1fr auto;gap:11px;align-items:center;
+  padding:12px 14px;cursor:pointer;
+}
+.buy input{
+  appearance:none;-webkit-appearance:none;margin:0;
+  width:20px;height:20px;border:1.5px solid var(--ink-3);
+  border-radius:5px;background:transparent;cursor:pointer;position:relative;
+}
+.buy input:checked{background:var(--accent);border-color:var(--accent)}
+.buy input:checked::after{
+  content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid var(--card);border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
+}
+.buy input:focus-visible{outline:2.5px solid var(--mark);outline-offset:2px}
+.item{font-size:14.5px;line-height:1.4}
+.item small{display:block;color:var(--ink-3);font-size:12px;margin-top:1px}
+.baht{
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  font-size:13px;color:var(--ink-2);font-weight:500;
+}
+.buy input:checked ~ .item{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
+.total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:13px 14px;background:var(--accent-soft);
+  font-family:Anuphan,sans-serif;font-weight:600;font-size:15px;
+}
+.total b{font-family:"IBM Plex Mono",monospace;font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.reset{
+  display:block;margin:10px 0 0;background:none;border:0;cursor:pointer;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);padding:4px 0;
+}
+.reset:hover{color:var(--accent)}
+.reset:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+
+/* ---------- trap / rule lists ---------- */
+.traps{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.traps li{
+  background:var(--card);border:1px solid var(--rule);
+  border-left:3px solid var(--mark);border-radius:9px;
+  padding:11px 13px;font-size:14px;line-height:1.5;
+}
+.traps b{font-weight:600}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.rules li{
+  display:grid;grid-template-columns:26px 1fr;gap:9px;
+  padding:11px 0;border-bottom:1px solid var(--rule);
+  font-size:14px;line-height:1.5;
+}
+.rules li:last-child{border-bottom:0}
+.rules .n{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;
+  color:var(--accent);font-weight:600;padding-top:3px;
+}
+
+/* ---------- table ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;
+  border:1px solid var(--rule);border-radius:11px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:13.5px}
+th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--rule)}
+th{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  background:var(--paper);
+}
+tr:last-child td{border-bottom:0}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+footer{
+  margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.06em;color:var(--ink-3);line-height:1.9;
+}
+.hidden{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">2,100 kcal · โปรตีน 2 ก./กก. · ขาด 500/วัน</p>
+    <h1>ตารางกินคัต<br>7-Eleven</h1>
+    <p class="sub">แผนกินระหว่างอยู่ต่างจังหวัด สั่งจาก 7-11 ล้วน เทรนตี 4 เดิน 6 กม.ทุกเย็น เป้า 80.7 → 70 กก.</p>
+  </header>
+
+  <div class="switch">
+    <div class="seg" role="group" aria-label="เลือกแบบวัน">
+      <button type="button" data-plan="a" aria-pressed="true"><span class="k">แบบ A</span>วันมีกล้วย</button>
+      <button type="button" data-plan="b" aria-pressed="false"><span class="k">แบบ B</span>วันไม่มีกล้วย</button>
+    </div>
+  </div>
+
+  <!-- ============ PLAN A ============ -->
+  <div data-pane="a">
+    <div class="stats">
+      <div class="stat"><b>167</b><span>โปรตีน ก.</span></div>
+      <div class="stat"><b>2,130</b><span>kcal</span></div>
+      <div class="stat"><b>185</b><span>บาท</span></div>
+      <div class="stat"><b>8</b><span>ขนมปัง แผ่น</span></div>
+    </div>
+
+    <section>
+      <h2>ตารางเวลา</h2>
+      <p class="note">กินให้ตรงเวลาเท่าที่ทำได้ — มื้อ 06:00 กับ 21:00 สำคัญที่สุด</p>
+      <ul class="tl">
+        <li class="diff"><span class="dot"></span><span class="time">04:15</span>
+          <div class="card"><div class="what">กล้วยหอม 1 ลูก<span class="flag">ก่อนเทรน</span></div>
+            <div class="macros"><span>โปรตีน <em>1 ก.</em></span><span>พลังงาน <em>100</em></span></div></div></li>
+        <li class="act"><span class="dot"></span><span class="time">05:00</span>
+          <a class="card applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener"><span class="what">เวท Day 1 / 2 / 3 <span class="go">เปิดแอป →</span></span></a></li>
+        <li><span class="dot"></span><span class="time">06:00</span>
+          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></div>
+            <div class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></div></div></li>
+        <li><span class="dot"></span><span class="time">09:00</span>
+          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น</div>
+            <div class="macros"><span>โปรตีน <em>22 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
+        <li><span class="dot"></span><span class="time">12:30</span>
+          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น + ดีน่า 1 กล่อง</div>
+            <div class="macros"><span>โปรตีน <em>37 ก.</em></span><span>พลังงาน <em>560</em></span></div></div></li>
+        <li class="diff"><span class="dot"></span><span class="time">16:00</span>
+          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + กล้วยหอม 1 ลูก</div>
+            <div class="macros"><span>โปรตีน <em>13 ก.</em></span><span>พลังงาน <em>250</em></span></div></div></li>
+        <li class="act"><span class="dot"></span><span class="time">18:00</span>
+          <div class="card"><div class="what">เดิน 6 กม.</div></div></li>
+        <li><span class="dot"></span><span class="time">19:30</span>
+          <div class="card"><div class="what">ข้าวกล่อง EZYGO ข้าวหอมมันปูอกไก่ย่างจิ้มแจ่ว</div>
+            <div class="macros"><span>โปรตีน <em>25 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
+        <li><span class="dot"></span><span class="time">21:00</span>
+          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงดีน่า 1 กล่อง<span class="flag">ห้ามข้าม</span></div>
+            <div class="macros"><span>โปรตีน <em>42 ก.</em></span><span>พลังงาน <em>275</em></span></div></div></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>ของที่ต้องสั่ง</h2>
+      <p class="note">ขนมปังใช้จากแพ็คที่ตุนไว้ ไม่ต้องซื้อทุกวัน</p>
+      <ul class="buy">
+        <li><label><input type="checkbox" data-k="a1"><span class="item">ไข่ต้ม แพ็ก 2 ฟอง<small>3 แพ็ก</small></span><span class="baht">54฿</span></label></li>
+        <li><label><input type="checkbox" data-k="a2"><span class="item">ข้าวกล่อง EZYGO อกไก่ย่างจิ้มแจ่ว<small>1 กล่อง</small></span><span class="baht">59฿</span></label></li>
+        <li><label><input type="checkbox" data-k="a3"><span class="item">ดีน่า ไฮโปรตีน 15 กรัม 230 ml<small>2 กล่อง</small></span><span class="baht">30฿</span></label></li>
+        <li><label><input type="checkbox" data-k="a4"><span class="item">กล้วยหอม<small>2 ลูก</small></span><span class="baht">24฿</span></label></li>
+        <li><label><input type="checkbox" data-k="a5"><span class="item">เลอแปง ขนมปังโฮลวีท 250 ก.<small>จากสต็อก 8 แผ่น — ซื้อใหม่ทุก 1–2 วัน</small></span><span class="baht">18฿</span></label></li>
+      </ul>
+      <div class="total"><span>รวม</span><b>185฿</b></div>
+      <button class="reset" type="button" data-reset="a">ล้างเครื่องหมายถูก</button>
+    </section>
+  </div>
+
+  <!-- ============ PLAN B ============ -->
+  <div data-pane="b" class="hidden">
+    <div class="stats">
+      <div class="stat"><b>173</b><span>โปรตีน ก.</span></div>
+      <div class="stat"><b>2,175</b><span>kcal</span></div>
+      <div class="stat"><b>180</b><span>บาท</span></div>
+      <div class="stat"><b>11</b><span>ขนมปัง แผ่น</span></div>
+    </div>
+
+    <section>
+      <h2>ตารางเวลา</h2>
+      <p class="note">ต่างจากแบบ A แค่ 2 ช่อง — 04:15 กับ 16:00</p>
+      <ul class="tl">
+        <li class="diff"><span class="dot"></span><span class="time">04:15</span>
+          <div class="card"><div class="what">เมจิกฟาร์ม น้ำมะพร้าว 1 ขวด + ขนมปัง 1 แผ่น<span class="flag">ก่อนเทรน</span></div>
+            <div class="macros"><span>โปรตีน <em>3 ก.</em></span><span>พลังงาน <em>115</em></span></div></div></li>
+        <li class="act"><span class="dot"></span><span class="time">05:00</span>
+          <a class="card applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener"><span class="what">เวท Day 1 / 2 / 3 <span class="go">เปิดแอป →</span></span></a></li>
+        <li><span class="dot"></span><span class="time">06:00</span>
+          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></div>
+            <div class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></div></div></li>
+        <li><span class="dot"></span><span class="time">09:00</span>
+          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น</div>
+            <div class="macros"><span>โปรตีน <em>22 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
+        <li><span class="dot"></span><span class="time">12:30</span>
+          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 4 แผ่น + ดีน่า 1 กล่อง</div>
+            <div class="macros"><span>โปรตีน <em>37 ก.</em></span><span>พลังงาน <em>560</em></span></div></div></li>
+        <li class="diff"><span class="dot"></span><span class="time">16:00</span>
+          <div class="card"><div class="what">ไข่ต้ม 2 ฟอง + ขนมปัง 2 แผ่น</div>
+            <div class="macros"><span>โปรตีน <em>17 ก.</em></span><span>พลังงาน <em>280</em></span></div></div></li>
+        <li class="act"><span class="dot"></span><span class="time">18:00</span>
+          <div class="card"><div class="what">เดิน 6 กม.</div></div></li>
+        <li><span class="dot"></span><span class="time">19:30</span>
+          <div class="card"><div class="what">ข้าวกล่อง EZYGO ข้าวหอมมันปูอกไก่ย่างจิ้มแจ่ว</div>
+            <div class="macros"><span>โปรตีน <em>25 ก.</em></span><span>พลังงาน <em>410</em></span></div></div></li>
+        <li><span class="dot"></span><span class="time">21:00</span>
+          <div class="card"><div class="what">เวย์ 1 สกู๊ป ชงดีน่า 1 กล่อง<span class="flag">ห้ามข้าม</span></div>
+            <div class="macros"><span>โปรตีน <em>42 ก.</em></span><span>พลังงาน <em>275</em></span></div></div></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>ของที่ต้องสั่ง</h2>
+      <p class="note">แบบนี้กินขนมปัง 11 แผ่น เกิน 1 แพ็ค — ต้องมีสำรอง</p>
+      <ul class="buy">
+        <li><label><input type="checkbox" data-k="b1"><span class="item">ไข่ต้ม แพ็ก 2 ฟอง<small>3 แพ็ก</small></span><span class="baht">54฿</span></label></li>
+        <li><label><input type="checkbox" data-k="b2"><span class="item">ข้าวกล่อง EZYGO อกไก่ย่างจิ้มแจ่ว<small>1 กล่อง</small></span><span class="baht">59฿</span></label></li>
+        <li><label><input type="checkbox" data-k="b3"><span class="item">ดีน่า ไฮโปรตีน 15 กรัม 230 ml<small>2 กล่อง</small></span><span class="baht">30฿</span></label></li>
+        <li><label><input type="checkbox" data-k="b4"><span class="item">เมจิกฟาร์ม น้ำมะพร้าว 250 ml<small>1 ขวด</small></span><span class="baht">12฿</span></label></li>
+        <li><label><input type="checkbox" data-k="b5"><span class="item">เลอแปง ขนมปังโฮลวีท 250 ก.<small>จากสต็อก 11 แผ่น — ต้องมี 2 แพ็ค</small></span><span class="baht">25฿</span></label></li>
+      </ul>
+      <div class="total"><span>รวม</span><b>180฿</b></div>
+      <button class="reset" type="button" data-reset="b">ล้างเครื่องหมายถูก</button>
+    </section>
+  </div>
+
+  <!-- ============ SHARED ============ -->
+  <section>
+    <h2>เช็กก่อนหยิบ</h2>
+    <p class="note">สี่จุดที่พลาดบ่อยและทำให้ตัวเลขทั้งวันเพี้ยน</p>
+    <ul class="traps">
+      <li><b>ดีน่า</b> — ต้องเป็นกล่องที่เขียน “ไฮโปรตีน 15 กรัม” ตัวธรรมดามีโปรตีนแค่ 7–8 ก. ถ้าฉลากหลังบอกน้ำตาลเกิน 5 ก. แปลว่าหยิบผิดสูตร</li>
+      <li><b>ข้าวกล่อง</b> — ถ้า EZYGO หมด เอากล่องที่เป็นไก่หรือหมู <b>ย่าง/ต้ม</b> เลี่ยงผัด ทอด แกงกะทิ ต่างกันได้ถึง 300 kcal</li>
+      <li><b>ไข่ต้ม</b> — ซองเครื่องปรุงที่แถมมา ทิ้ง ซองเดียว 300–500 มก.โซเดียม</li>
+      <li><b>ขนมปัง</b> — ไม่มีตู้เย็นซื้อทีละ 2 แพ็ค ขึ้นราใน 3–4 วัน มีตู้เย็นซื้อ 4 แพ็คแช่ไว้ อยู่ได้ 7–10 วัน</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>เผื่อของหมด</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>หมด</th><th>ใช้แทน</th><th>ราคา</th></tr></thead>
+        <tbody>
+          <tr><td>ดีน่า ไฮโปรตีน</td><td>ไวตามิ้ลค์ ไฮโปรตีน 500 ml — 1 กล่อง (26 ก.)</td><td class="num">36฿</td></tr>
+          <tr><td>ขนมปังโฮลวีท</td><td>ข้าวเหนียวนึ่งห่อเปล่า 1 ห่อ แทน 4 แผ่น</td><td class="num">15฿</td></tr>
+          <tr><td>กล้วยหอม</td><td>สลับไปใช้แบบ B ทั้งวัน</td><td class="num">—</td></tr>
+          <tr><td>เมจิกฟาร์ม</td><td>ข้ามไปเลย ดื่มน้ำเพิ่มแทน</td><td class="num">0฿</td></tr>
+          <tr><td>ขนมปังโฮลวีท (ไม่มีเลย)</td><td>ขนมปังขาว ต่างแค่ใยอาหาร</td><td class="num">~20฿</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>กฎประจำวัน</h2>
+    <ul class="rules">
+      <li><span class="n">01</span><span><b>น้ำ 3 ลิตร</b> กระจายทั้งวัน ไม่ใช่รวดเดียว — ช่วยขับโซเดียมและทำให้ตาชั่งอ่านตรง</span></li>
+      <li><span class="n">02</span><span><b>ห้ามข้ามมื้อ 21:00</b> ต่อให้รู้สึกอิ่ม นี่คือโปรตีนที่คุมกล้ามไว้ตลอด 7 ชม.ก่อนตื่นไปเทรน</span></li>
+      <li><span class="n">03</span><span><b>ชั่งน้ำหนักทุกเช้าเวลาเดิม</b> หลังเข้าห้องน้ำ ก่อนกินอะไร — ดูช่องน้ำหนักอย่างเดียว ช่อง BMR กับกล้ามเนื้อไม่ต้องอ่าน</span></li>
+      <li><span class="n">04</span><span><b>กินแบบนี้ 14 วันโดยไม่ปรับอะไร</b> แล้วเอาค่าเฉลี่ย 7 วันไปเทียบกับ 80.71 กก. — เปลี่ยนทีละอย่างเท่านั้น</span></li>
+      <li><span class="n">05</span><span><b>วันที่หลุดกินนอกแผน</b> อย่าตัดอะไรชดเชย กินมื้อที่เหลือตามปกติ จดกำกับไว้ว่าหลุด แล้วเดินหน้าต่อ</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    เทรน 6 วัน/สัปดาห์ · เดิน 6 กม./วัน · TDEE ~2,650<br>
+    เริ่ม 1 ส.ค. 2569 ที่ 80.4 กก. · เป้า 70 กก.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll(".seg button");
+  var panes={a:document.querySelector('[data-pane="a"]'),b:document.querySelector('[data-pane="b"]')};
+
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+  function show(which){
+    btns.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.plan===which?"true":"false")});
+    panes.a.classList.toggle("hidden",which!=="a");
+    panes.b.classList.toggle("hidden",which!=="b");
+    store("mealplan.day",which);
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){show(b.dataset.plan)})});
+  show(read("mealplan.day")==="b"?"b":"a");
+
+  document.querySelectorAll('.buy input[type="checkbox"]').forEach(function(c){
+    var key="mealplan.buy."+c.dataset.k;
+    if(read(key)==="1") c.checked=true;
+    c.addEventListener("change",function(){store(key,c.checked?"1":"0")});
+  });
+
+  document.querySelectorAll("[data-reset]").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var p=btn.dataset.reset;
+      document.querySelectorAll('[data-pane="'+p+'"] .buy input').forEach(function(c){
+        c.checked=false; store("mealplan.buy."+c.dataset.k,"0");
+      });
+    });
+  });
+})();
+</script>
