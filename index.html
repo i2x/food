@@ -1,4 +1,6 @@
-<title>ตารางกินคัต 7-Eleven</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ตารางกินคัต</title>
 <meta name="theme-color" content="#0F5348">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,9 +70,9 @@ h1{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:700;
 /* ---- sticky control bar ---- */
 .switch{position:sticky;top:0;z-index:20;background:var(--paper);
   padding:14px 0 12px;margin-top:22px;border-bottom:1px solid var(--rule)}
-.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.seg button{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:600;font-size:15px;
-  padding:11px 8px;border-radius:9px;cursor:pointer;background:var(--card);color:var(--ink-2);
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.seg button{font-family:Anuphan,"IBM Plex Sans Thai",sans-serif;font-weight:600;font-size:14px;
+  padding:10px 5px;border-radius:9px;cursor:pointer;background:var(--card);color:var(--ink-2);
   border:1.5px solid var(--rule);transition:background .15s,color .15s,border-color .15s;line-height:1.3}
 .seg button .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
   letter-spacing:.14em;opacity:.72;margin-bottom:2px}
@@ -229,14 +231,15 @@ footer{margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
 
   <header class="mast">
     <p class="eyebrow">2,100 kcal · โปรตีน 2 ก./กก. · ขาด 500/วัน</p>
-    <h1>ตารางกินคัต<br>7-Eleven</h1>
-    <p class="sub">แผนกินระหว่างอยู่ต่างจังหวัด สั่งจาก 7-11 ล้วน เทรนตี 4 เดิน 6 กม.ทุกเย็น เป้า 80.7 → 70 กก.</p>
+    <h1>ตารางกินคัต</h1>
+    <p class="sub">แบบ A/B สั่งจาก 7-11 ล้วน ตอนอยู่ต่างจังหวัด · แบบ C ทำกินเองตอนอยู่บ้าน เทรนตี 4 เดิน 6 กม.ทุกเย็น เป้า 80.7 → 70 กก.</p>
   </header>
 
   <div class="switch">
     <div class="seg" role="group" aria-label="เลือกแบบวัน">
       <button type="button" data-plan="a" aria-pressed="true"><span class="k">แบบ A</span>วันมีกล้วย</button>
       <button type="button" data-plan="b" aria-pressed="false"><span class="k">แบบ B</span>วันไม่มีกล้วย</button>
+      <button type="button" data-plan="c" aria-pressed="false"><span class="k">แบบ C</span>วันอยู่บ้าน</button>
     </div>
     <div class="live" id="live">
       <div class="livetop">
@@ -388,8 +391,124 @@ footer{margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
     </section>
   </div>
 
+
+  <!-- ================= PLAN C ================= -->
+  <div data-pane="c" class="hidden">
+    <div class="stats">
+      <div class="stat"><b>188</b><span>โปรตีน ก.</span></div>
+      <div class="stat"><b>2,131</b><span>kcal</span></div>
+      <div class="stat"><b>139</b><span>บาท</span></div>
+      <div class="stat"><b>500</b><span>ข้าวสวย ก.</span></div>
+    </div>
+
+    <section>
+      <div class="h2row">
+        <h2>ตารางเวลา</h2>
+        <button class="reset" type="button" data-clear="meal">ล้างวันนี้</button>
+      </div>
+      <p class="note">น้ำหนักเนื้อทั้งหมดเป็น <b>น้ำหนักดิบ</b> · ข้าวเป็น <b>น้ำหนักสุก</b> ชั่งตอนกิน — อกไก่ 120 ก.ดิบ สุกแล้วจะเหลือราว 90 ก. ไม่ต้องตกใจ</p>
+      <ul class="tl">
+        <li data-m="c-0415" data-t="255" data-p="1" data-k="100"><span class="dot"></span><span class="time">04:15</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">กล้วยหอม 1 ลูก<span class="flag">ก่อนเทรน</span></span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>1 ก.</em></span><span>พลังงาน <em>100</em></span></span></span></label></li>
+
+        <li class="act" data-m="c-0500" data-t="300"><span class="dot"></span><span class="time">05:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวท Day 1 / 2 / 3 · ยิมใกล้บ้าน</span><span class="when"></span>
+            <a class="applink" href="https://i2x.github.io/workout/" target="_blank" rel="noopener">เปิดแอปจดเวท →</a></span></label></li>
+
+        <li data-m="c-0600" data-t="360" data-p="27" data-k="125"><span class="dot"></span><span class="time">06:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวย์ 1 สกู๊ป ชงน้ำ<span class="flag">หลังเทรน</span></span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>27 ก.</em></span><span>พลังงาน <em>125</em></span></span></span></label></li>
+
+        <li data-m="c-0900" data-t="540" data-p="23" data-k="411"><span class="dot"></span><span class="time">09:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 3 ฟอง + ข้าวสวย 150 ก.</span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>23 ก.</em></span><span>พลังงาน <em>411</em></span></span></span></label></li>
+
+        <li data-m="c-1230" data-t="750" data-p="44" data-k="543"><span class="dot"></span><span class="time">12:30</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">อกไก่ 120 ก. + ข้าวสวย 200 ก. + ผัก 150 ก. + น้ำมัน 1 ช้อนชา</span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>44 ก.</em></span><span>พลังงาน <em>543</em></span></span></span></label></li>
+
+        <li data-m="c-1600" data-t="960" data-p="14" data-k="244"><span class="dot"></span><span class="time">16:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">ไข่ต้ม 2 ฟอง + กล้วยหอม 1 ลูก</span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>14 ก.</em></span><span>พลังงาน <em>244</em></span></span></span></label></li>
+
+        <li class="act" data-m="c-1800" data-t="1080"><span class="dot"></span><span class="time">18:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เดิน 6 กม.</span><span class="when"></span></span></label></li>
+
+        <li data-m="c-1930" data-t="1170" data-p="43" data-k="478"><span class="dot"></span><span class="time">19:30</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">อกไก่ 120 ก. + ข้าวสวย 150 ก. + ผัก 150 ก. + น้ำมัน 1 ช้อนชา</span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>43 ก.</em></span><span>พลังงาน <em>478</em></span></span></span></label></li>
+
+        <li data-m="c-2100" data-t="1260" data-p="36" data-k="230"><span class="dot"></span><span class="time">21:00</span>
+          <label class="card"><input type="checkbox" class="tick"><span><span class="what">เวย์ 1 สกู๊ป ชงนมจืดพร่องมันเนย 250 มล.<span class="flag">ห้ามข้าม</span></span><span class="when"></span>
+            <span class="macros"><span>โปรตีน <em>36 ก.</em></span><span>พลังงาน <em>230</em></span></span></span></label></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="h2row">
+        <h2>ของที่ต้องมี</h2>
+        <button class="reset" type="button" data-reset="c">ล้างลิสต์</button>
+      </div>
+      <p class="note">ปริมาณต่อวัน — ซื้อเป็นก้อนแล้วแบ่งได้ อกไก่แบ่งถุงละ 120 ก. แช่ช่องแข็ง ย้ายลงช่องธรรมดาคืนก่อนใช้</p>
+      <ul class="buy">
+        <li><label><input type="checkbox" class="tick" data-b="c1"><span class="item">อกไก่สด<small>240 ก. — แบ่ง 2 มื้อ มื้อละ 120 ก.</small></span><span class="baht">20฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c2"><span class="item">ไข่ไก่<small>5 ฟอง — ต้ม 3 ตอนเช้า อีก 2 ตอนบ่าย</small></span><span class="baht">25฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c3"><span class="item">ข้าวสาร<small>~170 ก. หุงได้ข้าวสวย 500 ก. (7–8 ทัพพี)</small></span><span class="baht">6฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c4"><span class="item">กล้วยหอม<small>2 ลูก — 04:15 กับ 16:00</small></span><span class="baht">16฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c5"><span class="item">ผัก<small>300 ก. — ลวก สด หรือแช่แข็งก็ได้ ไม่มีข้ามได้</small></span><span class="baht">15฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c6"><span class="item">เวย์<small>2 สกู๊ป — 06:00 กับ 21:00</small></span><span class="baht">40฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c7"><span class="item">นมจืดพร่องมันเนย<small>250 มล. — ชงเวย์มื้อ 21:00</small></span><span class="baht">15฿</span></label></li>
+        <li><label><input type="checkbox" class="tick" data-b="c8"><span class="item">น้ำมัน<small>2 ช้อนชา — ตักด้วยช้อน ห้ามเทจากขวด</small></span><span class="baht">2฿</span></label></li>
+      </ul>
+      <div class="total"><span>รวม</span><b>139฿</b></div>
+    </section>
+
+    <section>
+      <h2>เรื่องผัก</h2>
+      <p class="note">ไม่ต้องเป็นผักลวก และไม่ใช่ของบังคับ</p>
+      <ul class="traps">
+        <li><b>ไม่มีผักเลยก็ข้ามได้</b> — ผัก 300 ก.ทั้งวันคิดเป็นแค่ 80 kcal กับโปรตีน 4 ก. ข้ามแล้วเหลือ <b>2,051 kcal / โปรตีน 184 ก.</b> ยังอยู่ในกรอบ ไม่ต้องหาอะไรมาชดเชย</li>
+        <li><b>ไม่ต้องลวก</b> — แตงกวาหั่น กะหล่ำปลีฉีก ผักกาดขาว ถั่วฝักยาว กินสดได้หมด ล้างแล้วใส่จานจบ</li>
+        <li><b>ผักแช่แข็งใช้ได้</b> — ถุงผักรวมแช่แข็งเข้าไมโครเวฟ 2 นาที ค่าอาหารเท่าผักสด เก็บได้เป็นเดือน เหมาะสุดถ้าไปตลาดไม่บ่อย</li>
+        <li><b>ผัดผักที่บ้านทำไว้แล้วก็นับได้</b> — แต่ถ้าใช้อันนั้น <b>ตัดน้ำมัน 1 ช้อนชาของมื้อนั้นทิ้ง</b> เพราะในกระทะมีอยู่แล้ว</li>
+        <li><b>ที่ห้ามคือผักชุบแป้งทอด</b> กับ<b>ผักดองที่ไม่ล้างน้ำ</b> — อย่างแรกคือแป้งกับน้ำมัน อย่างหลังคือโซเดียมล้วน</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>กฎของแบบ C</h2>
+      <ul class="rules">
+        <li><span class="n">01</span><span><b>ตักน้ำมันด้วยช้อน ห้ามเทจากขวด</b> — วาดวงรอบกระทะรอบเดียวคือ 2–3 ช้อนโต๊ะ = เกินที่ตั้งใจ 6–9 เท่า และมองไม่เห็นเพราะซึมเข้าเนื้อหมด</span></li>
+        <li><span class="n">02</span><span><b>อกไก่สดเท่านั้น เลี่ยงไส้กรอก</b> — ไส้กรอกอกไก่ 200 ก. ให้โปรตีนแค่ ~30 ก. แต่มีโซเดียม 1,200–1,600 มก. กักน้ำได้ 1–2 กก. ทำให้ตาชั่งนิ่งทั้งที่ไขมันลดจริง</span></li>
+        <li><span class="n">03</span><span><b>ข้าวขาวใช้ได้ ไม่ต้องหาข้าวกล้อง</b> — ต่างกันแค่ใยอาหาร ไม่ต่างเรื่องแคลอรี่หรือไขมันที่ลด ตัวที่สำคัญคือปริมาณ</span></li>
+        <li><span class="n">04</span><span><b>กินกับข้าวที่บ้านแทนได้</b> ถ้าเป็นเนื้อไม่ทอด — ตักครั้งเดียวแล้วเดินออกจากหม้อ ข้าว 3 ทัพพี เนื้อเท่าฝ่ามือ แกงกะทิตักแต่เนื้อไม่ราดน้ำ</span></li>
+        <li><span class="n">05</span><span><b>เวย์มื้อ 21:00 ห้ามขยับ</b> เหมือนแบบ A/B — มื้ออื่นสลับเวลากันได้ ขอแค่ยอดรวมทั้งวันเท่าเดิม</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>แลกเนื้อชนิดอื่น</h2>
+      <p class="note">โปรตีนเท่ากับอกไก่ 120 ก. — ใช้แทนได้ทุกมื้อ</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>ใช้แทน</th><th>น้ำหนักดิบ</th><th>kcal ต่างไป</th></tr></thead>
+          <tbody>
+            <tr><td>ปลานิล / ปลากะพง เนื้อล้วน</td><td class="num">185 ก.</td><td class="num">−25</td></tr>
+            <tr><td>กุ้งปอกเปลือก</td><td class="num">190 ก.</td><td class="num">−10</td></tr>
+            <tr><td>สะโพกไก่ไม่หนัง</td><td class="num">185 ก.</td><td class="num">+20</td></tr>
+            <tr><td>หมูสันใน</td><td class="num">170 ก.</td><td class="num">+45</td></tr>
+            <tr><td>ไข่ (ถ้าไม่มีเนื้อเลย)</td><td class="num">6 ฟอง</td><td class="num">+230</td></tr>
+            <tr><td>หมูสามชั้น / คอหมู</td><td class="num">ห้ามใช้</td><td class="num">+1,400</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">อยากกินเนื้อเยอะกว่านี้แลกได้ — <b>อกไก่ +30 ก. = ข้าว −40 ก.</b> แต่ไม่แนะนำให้เกินมื้อละ 150 ก. เพราะเทรนตี 4 แล้วเดินอีก 6 กม. คาร์บต่ำจะหมดแรงกลางเซต และโปรตีน 188 ก.ก็เกินพอสำหรับ 80 กก.อยู่แล้ว</p>
+    </section>
+  </div>
+
   <!-- ================= SHARED ================= -->
-  <section>
+  <section class="only-ab">
     <h2>เช็กก่อนหยิบ</h2>
     <p class="note">สี่จุดที่พลาดบ่อยและทำให้ตัวเลขทั้งวันเพี้ยน</p>
     <ul class="traps">
@@ -401,7 +520,7 @@ footer{margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
     </ul>
   </section>
 
-  <section>
+  <section class="only-ab">
     <h2>เผื่อของหมด</h2>
     <div class="scroll">
       <table>
@@ -581,16 +700,19 @@ footer{margin-top:44px;padding-top:16px;border-top:3px solid var(--rule-hard);
 
   /* ---- สลับ A / B ---- */
   var btns=Array.prototype.slice.call(document.querySelectorAll(".seg button"));
-  var panes={a:document.querySelector('[data-pane="a"]'),b:document.querySelector('[data-pane="b"]')};
+  var panes=Array.prototype.slice.call(document.querySelectorAll("[data-pane]"));
   function show(w){
     btns.forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-plan")===w?"true":"false")});
-    panes.a.classList.toggle("hidden",w!=="a");
-    panes.b.classList.toggle("hidden",w!=="b");
+    panes.forEach(function(p){p.classList.toggle("hidden",p.getAttribute("data-pane")!==w)});
+    Array.prototype.forEach.call(document.querySelectorAll(".only-ab"),function(e){
+      e.classList.toggle("hidden",w==="c");
+    });
     LS.set("food.day.type",w);
     paint();
   }
   btns.forEach(function(b){b.addEventListener("click",function(){show(b.getAttribute("data-plan"))})});
-  show(LS.get("food.day.type")==="b"?"b":"a");
+  var saved=LS.get("food.day.type");
+  show(btns.some(function(b){return b.getAttribute("data-plan")===saved})?saved:"a");
 
   /* ---- เปิดค้างไว้ข้ามคืน แล้วกลับมาที่แท็บ ---- */
   document.addEventListener("visibilitychange",function(){
